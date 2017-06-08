@@ -1,0 +1,50 @@
+<h3>验证器- 步骤3 - 完成</h3>
+<br>
+<pre>
+namespace app\{:session('module')}\validate;
+
+use think\Validate;
+
+class {$table} extends Validate
+{
+    protected $rule = [
+    <?php foreach($rs as $key=>$val){ ?>
+        '{$key}'  =>  '<?php echo implode('|',$val) ?>',
+    <?php } ?>
+    ];
+
+    protected $message = [
+     <?php foreach($ms as $key=>$val){ ?>
+        '{$key}'  =>  '{$val}',
+     <?php } ?>
+    ];
+
+	<?php
+	 $fields = "";
+	 foreach($cls as $c){ 
+			$fields.= "'".$c['Field']."',"; 
+	} 
+	 $fields = trim($fields,',');
+	?>
+
+    protected $scene = [
+        'add'   =>  [{$fields}],
+        'edit'  =>  [{$fields}],
+    ];
+}
+
+</pre>
+<button class="btn btn-info">生成文件</button>
+<div id="txt"></div>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" ></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('button').click(function(){
+		   var cont = $('pre').text();
+		  // alert(cont);
+		   $.post('{:url("buildvalidatefile")}',{content:cont},function(data){
+	             $('#txt').text(data); 	   
+		   });
+		});
+	});
+</script>

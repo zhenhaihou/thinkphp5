@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">	   
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">	   
+<head>	   
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	   
+	<title>SyntaxHighlighter Build Test Page</title>	
+<script charset="utf-8" src="kindeditor-min.js"></script>
+<script charset="utf-8" src="lang/zh-CN.js"></script>
+	
+<link type="text/css" rel="stylesheet" href="syntaxhighlighter/styles/shCore.css" />
+<link type="text/css" rel="stylesheet" href="syntaxhighlighter/styles/shThemeDefault.css"/>
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="syntaxhighlighter/scripts/shCore.js"></script>
+<script type="text/javascript" src="syntaxhighlighter/scripts/shAutoloader.js"></script>	
+<script type="text/javascript" src="syntaxhighlighter/lang.js"></script>	  
+ 
+<script>
+var editor;
+KindEditor.ready(function(K) {
+editor = K.create('textarea[name="content"]', {
+	items : [
+			'source', '|', 'undo', 'redo', '|', 'preview', 'print', 'code', 'cut', 'copy', 'paste',
+			'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+			'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
+			'superscript', 'clearhtml', 'quickformat', 'selectall', '|', 'fullscreen', '/',
+			'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+			'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'multiimage',
+			'media', 'insertfile', 'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
+			'link', 'unlink', '|', 'about'
+	       ],
+});
+});
+ 
+function save(){
+//取得HTML内容?
+//同步数据后可以直接取得textarea的value?
+editor.sync();
+html=document.getElementById('addeditor_id').value;//原生API
+$("#schtmlnr").val(html);//把KindEditor产生的html代码放到schtmlnr里面，用于提交
+}
+</script> 
+</head>	   
+				  
+<body >	   
+<form>
+<textarea id="addeditor_id" name="content" style="width:100%;height:200px;border: 0 none;visibility:hidden;"></textarea>
+<textarea rows="20" cols="100" name="schtmlnr" id="schtmlnr"></textarea>
+<input type="button" value="提交" onclick="save()"/>
+<form>
+</html>

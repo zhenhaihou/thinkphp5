@@ -1,0 +1,12 @@
+<h2>验证器 - 步骤1</h2>
+<form action="{:url('addvalidate')}" method="get">
+选择表：
+<select name="table">
+<option value="">选择表</option>
+{volist name="tables" id="vo"}
+<option value="{$vo['name']}" {eq name="Think.session.table" value="$vo['name']"}selected{/eq}>{$vo['name']}</option>
+{/volist}
+</select>
+<br><br>
+<input type="submit" value="下一步">
+</form>

@@ -1,0 +1,12 @@
+找到shCore.css这个文件，找到	
+
+.syntaxhighlighter table {
+  width: 100% !important;
+}
+ 
+把它修改成
+	
+.syntaxhighlighter table {
+  width: 100% !important;
+  margin: 1px 0 !important;
+}
